@@ -1,77 +1,53 @@
-tasks = []
+def add(a, b):
+    return a + b
 
-def show_tasks():
-    if not tasks:
-        print("\n📋 No tasks added yet.\n")
-    else:
-        print("\n📝 To-Do List:")
-        for i, task in enumerate(tasks, start=1):
-            status = "✅" if task["completed"] else "❌"
-            print(f"{i}. {status} {task['task']}")
-    print()
+def subtract(a, b):
+    return a - b
 
-def add_task():
-    task = input("Enter task: ").strip()
-    if task:
-        tasks.append({"task": task, "completed": False})
-        print("Task added successfully!\n")
-    else:
-        print("Task cannot be empty!\n")
+def multiply(a, b):
+    return a * b
 
-def mark_complete():
-    show_tasks()
-    try:
-        index = int(input("Enter task number to mark as complete: ")) - 1
-        tasks[index]["completed"] = True
-        print("Task marked as complete!\n")
-    except:
-        print("Invalid task number!\n")
-
-def mark_incomplete():
-    show_tasks()
-    try:
-        index = int(input("Enter task number to mark as incomplete: ")) - 1
-        tasks[index]["completed"] = False
-        print("Task marked as incomplete!\n")
-    except:
-        print("Invalid task number!\n")
-
-def delete_task():
-    show_tasks()
-    try:
-        index = int(input("Enter task number to delete: ")) - 1
-        deleted = tasks.pop(index)
-        print(f"Deleted: {deleted['task']}\n")
-    except:
-        print("Invalid task number!\n")
+def divide(a, b):
+    if b == 0:
+        return "Error: Cannot divide by zero!"
+    return a / b
 
 def main():
-    while True:
-        print("===== TO-DO LIST MENU =====")
-        print("1. Show Tasks")
-        print("2. Add Task")
-        print("3. Mark Complete")
-        print("4. Mark Incomplete")
-        print("5. Delete Task")
-        print("6. Exit")
+    print(" Simple Calculator")
+    print("=========================")
+    
+    try:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+    except ValueError:
+        print(" Invalid input! Please enter numbers only.")
+        return
 
-        choice = input("Choose an option (1-6): ").strip()
+    print("\nChoose Operation:")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (×)")
+    print("4. Division (÷)")
 
-        if choice == '1':
-            show_tasks()
-        elif choice == '2':
-            add_task()
-        elif choice == '3':
-            mark_complete()
-        elif choice == '4':
-            mark_incomplete()
-        elif choice == '5':
-            delete_task()
-        elif choice == '6':
-            print("Goodbye! 👋")
-            break
-        else:
-            print("Invalid choice! Try again.\n")
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == '1':
+        result = add(num1, num2)
+        op = "+"
+    elif choice == '2':
+        result = subtract(num1, num2)
+        op = "-"
+    elif choice == '3':
+        result = multiply(num1, num2)
+        op = "×"
+    elif choice == '4':
+        result = divide(num1, num2)
+        op = "÷"
+    else:
+        print(" Invalid operation choice!")
+        return
+
+    print(f"\n Result: {num1} {op} {num2} = {result}")
 
 if __name__ == "__main__":
     main()
